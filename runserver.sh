@@ -1,1 +1,1 @@
-uvicorn micro.main:app --reload
+uvicorn main:app --reload

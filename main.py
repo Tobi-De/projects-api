@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .core.config import settings
-from .endpoints import router
+from app.core.config import settings
+from app.endpoints import router
 
 
 def get_application():
