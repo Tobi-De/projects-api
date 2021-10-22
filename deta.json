@@ -2,6 +2,7 @@
   "name": "projects-api",
   "description": "Projects-api help you manage your projects.",
   "runtime": "python3.9",
+  "http_auth": "disabled",
   "env": [
     {
       "key": "DETA_PROJECT_KEY",
@@ -11,7 +12,7 @@
     {
       "key": "BACKEND_CORS_ORIGINS",
       "description": "Allowed cors origin, update this after you app is deployed with the micro url.",
-      "value": "['https://app.deta.dev/']",
+      "value": "['https://*.deta.dev']",
       "required": true
     }
   ]
