@@ -1,0 +1,16 @@
+{
+  "name": "projects-api",
+  "description": "Projects-api help you manage your projects.",
+  "env": [
+    {
+      "key": "DETA_PROJECT_KEY",
+      "description": "Deta project key",
+      "required": true
+    },
+    {
+      "key": "BACKEND_CORS_ORIGINS",
+      "description": "Allowed cors origin",
+      "required": true
+    }
+  ]
+}
