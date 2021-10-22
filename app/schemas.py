@@ -18,15 +18,12 @@ class ProjectBase(BaseModel):
     tech_stack: list[str] = Field(default_factory=list)
     images: list[ProjectImage] = Field(default_factory=list)
     content: Optional[str] = None
-    created: datetime = Field(default_factory=datetime.now)
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
 
 
 class ProjectCreate(ProjectBase):
     title: str
     summary: str
+    created: datetime = Field(default_factory=datetime.now)
 
 
 class ProjectUpdate(ProjectBase):
@@ -35,6 +32,7 @@ class ProjectUpdate(ProjectBase):
 
 class ProjectInDB(ProjectBase):
     key: str
+    created: datetime
 
 
 class Project(ProjectInDB):

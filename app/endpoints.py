@@ -19,7 +19,9 @@ async def home(request: Request):
 
 @router.post(path="/create", response_model=Project)
 async def create_project(project_in: ProjectCreate):
-    return db.insert(project_in.dict())
+    data = project_in.dict()
+    data["created"] = project_in.created.isoformat()
+    return db.insert(data)
 
 
 @router.post(path="/update/{key}")
@@ -30,7 +32,7 @@ async def update(key: str, project_in: ProjectUpdate):
 
 @router.get("/read", response_model=list[Project])
 async def read_projects(limit: conint(ge=0) = 100, last_key: Optional[str] = None):
-    return db.fetch(limit=limit, last=last_key)
+    return db.fetch(limit=limit, last=last_key).items
 
 
 @router.get("/{id}", response_model=Project)
