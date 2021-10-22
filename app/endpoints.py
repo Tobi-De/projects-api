@@ -17,6 +17,16 @@ async def home(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
 
 
+@router.get("/read", response_model=list[Project])
+async def read_projects(limit: conint(ge=0) = 100, last_key: Optional[str] = None):
+    return db.fetch(limit=limit, last=last_key).items
+
+
+@router.get("read/{id}", response_model=Project)
+async def read_project(key: str):
+    return db.get(key=key)
+
+
 @router.post(path="/create", response_model=Project)
 async def create_project(project_in: ProjectCreate):
     data = project_in.dict()
@@ -28,13 +38,3 @@ async def create_project(project_in: ProjectCreate):
 async def update(key: str, project_in: ProjectUpdate):
     db.update(project_in.dict(exclude_unset=True), key=key)
     return db.get(key)
-
-
-@router.get("/read", response_model=list[Project])
-async def read_projects(limit: conint(ge=0) = 100, last_key: Optional[str] = None):
-    return db.fetch(limit=limit, last=last_key).items
-
-
-@router.get("/{id}", response_model=Project)
-async def read_project(key: str):
-    return db.get(key=key)

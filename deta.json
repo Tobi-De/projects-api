@@ -2,7 +2,6 @@
   "name": "projects-api",
   "description": "Projects-api help you manage your projects.",
   "runtime": "python3.9",
-  "http_auth": "enabled",
   "env": [
     {
       "key": "DETA_PROJECT_KEY",
