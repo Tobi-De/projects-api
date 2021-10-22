@@ -3,4 +3,3 @@ uvicorn==0.12.2
 pydantic[email,dotenv]==1.8.2
 ujson==4.2.0
 deta==1.0.0
-jinja2==3.0.2

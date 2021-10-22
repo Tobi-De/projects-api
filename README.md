@@ -1,8 +1,9 @@
 # projects-api
 
-This project was generated via [manage-fastapi](https://ycd.github.io/manage-fastapi/)! :tada:
+A simple API that allows you to save your projects and access them easily, they can then be easily added to your
+portfolio for example.
 
-## Deployment and
+## Deployment
 
 [![Deploy](https://button.deta.dev/1/svg)](https://go.deta.dev/deploy?repo=https://github.com/Tobi-De/projects-api)
 

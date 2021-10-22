@@ -1,20 +1,16 @@
 from typing import Optional
 
-from fastapi import APIRouter, Request
-from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
+from deta import Deta
+from fastapi import APIRouter
 from pydantic import conint
 
-from .core.deta import db
+from .core.config import settings
 from .schemas import Project, ProjectCreate, ProjectUpdate
 
-templates = Jinja2Templates(directory="app/templates")
+deta = Deta(settings.DETA_PROJECT_KEY)
+db = deta.Base("projects")
+
 router = APIRouter()
-
-
-@router.get(path="/", response_class=HTMLResponse, include_in_schema=False)
-async def home(request: Request):
-    return templates.TemplateResponse("home.html", {"request": request})
 
 
 @router.get("/read", response_model=list[Project])
@@ -34,7 +30,13 @@ async def create_project(project_in: ProjectCreate):
     return db.insert(data)
 
 
-@router.post(path="/update/{key}")
-async def update(key: str, project_in: ProjectUpdate):
+@router.post(path="/update/{key}", response_model=Project)
+async def update_project(key: str, project_in: ProjectUpdate):
     db.update(project_in.dict(exclude_unset=True), key=key)
     return db.get(key)
+
+
+@router.post(path="/delete/{key}")
+async def delete_project(key: str):
+    db.delete(key)
+    return {"key": key}
