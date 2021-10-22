@@ -10,7 +10,7 @@
     {
       "key": "BACKEND_CORS_ORIGINS",
       "description": "Allowed cors origin, update this after you app is deployed with the micro url.",
-      "default": "[*]",
+      "value": "[*]",
       "required": true
     }
   ]
